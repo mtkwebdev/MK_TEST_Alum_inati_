@@ -8,26 +8,45 @@
 ## Optimisations: 
 #### App.vue
 1. Set Min = 0 and Max = 100 ranges for the number input tag. The Spec mentions that only 1 to 100 should appear on the screen as a user input. 
+
 2. Set v-model to v-model.number in the input tag, so that the result is returned as typeof(Number) === true.
+
 3. Set up a computed method to listen, update, and return the "limit" change from 100 when modified by user.
+
 4. Passed "number" prop to the "Numbers" component, passing through the value returned from the getLimit computed method I created. 
 
 *3. & 4.* Set up a computed method to pass reactive data from parent to child, this is less expensive on Vue engine than using a watch option to listen to parent!
 * `Please see https://v2.vuejs.org/v2/guide/computed.html?redirect=true for more information.`
 
 #### Numbers.vue
-1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in listOfNumbers()"". "n()" is not a maintainable or descriptive name for any function / method. I changed it so its more descriptive and maintainable. 
+1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in "listOfRandomisedNumbers()". "n()" is not a maintainable or descriptive name for any function / method. I changed it so its more descriptive and maintainable. 
+
 2. Created a props option, and validated the prop type, expecting the prop to return type Number 
  \ `https://v2.vuejs.org/v2/api/?redirect=true#props`  
  \
-3. Deleted watch option from script, since we are reciving the "number" prop that automatically returns the input value from the parent component. 
-4. In the listOfNumbers method, I changed i = 0 to ...... i = 1, since the numbers should start at 1, and not 0. 
-5. I also changed "i < this.limit" to ...... "i < (this.$props.number + 1)" so that we get a list of 1-100 rather than 0-99. 
-6. Renamed "n()" to "listOfRandomisedNumbers()" since function needed to return random numbers. 
-7. "listOfRandomisedNumbers()" did not have an efficient Math.Random function, as it had a bias of only 0.5. I implemented a randomise for loop Algorithm known as the "Fisher–Yates shuffle".
-8. Renamed "hov" method to "highlight" so its more descriptive to what the function does. 
 
-* `Reference: Fisher–Yates shuffle www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/`
+3. Deleted watch option from script, since we are reciving the "number" prop that automatically returns the input value from the parent component. 
+
+4. In the "listOfRandomisedNumbers()" method, I changed i = 0 to ...... i = 1, since the numbers should start at 1, and not 0. 
+
+5. I also changed "i < this.limit" to ...... "i < (this.$props.number + 1)" so that we get a list of 1-100 rather than 0-99. 
+
+6. Renamed "n()" to "listOfRandomisedNumbers()" since function needed to return random numbers. 
+
+7. "listOfRandomisedNumbers()" did not have an efficient Math.Random function, as it had a bias of only 0.5. I implemented a randomise "for loop" Algorithm known as the "Fisher–Yates shuffle".
+
+\ * `Reference: Fisher–Yates shuffle www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/`
+
+8. On line 3 where v-for="number in listOfRandomisedNumbers()" appears, I changed it to v-for="number in this.numbers". Because I wanted to loop through this.$data, rather than an array returned by a function, as a function would need time to execute and is not instant. 
+
+9. I also called listOfRandomisedNumbers() in a created lifecycle hook, so that this.$data.numbers would be a populated array upon the components' creation, rather than an empty array.
+
+
+
+
+
+<!-- 8. Renamed "hov" method to "highlight" so its more descriptive to what the function does.  -->
+
 
 
 
