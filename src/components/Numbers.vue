@@ -28,7 +28,7 @@ export default {
           [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
         }
       // console.log(numbers)
-      return this.numbers = numbers
+      return numbers
     },
     highlight(number)
     {
