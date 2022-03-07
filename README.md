@@ -1,7 +1,7 @@
 # Submission - By Mohammad Kawadri: 
 
 #### Note:
-- Having looked at the package.json and finding that Vue is set to "vue": "^2.5.2", means that we are using Vue 2. Therefore, we will continue using the Vue options data API to modify and build components. 
+- Having looked at the package.json and finding that Vue is set to "vue": "^2.5.2", means that we are using Vue 2, and therefore we will continue using the Vue options data API to modify and build components. 
 * `More information found at https://v2.vuejs.org/v2/api/?redirect=true#Options-Data`
 - I did not upgrade Vue 2 to Vue 3, because this was not requested in the spec, and in a working envrionment, this may disrupt other users and or production code. 
 
@@ -13,12 +13,13 @@
 3. Passed "number" prop to the "Numbers" component, passing through the value returned from the getLimit computed method I created. 
 
 #### Numbers.vue
- 1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in listOfNumbers()"".
- 2. Created a props option, and validated the prop type, expecting the prop to return type Number 
+1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in listOfNumbers()"".
+2. Created a props option, and validated the prop type, expecting the prop to return type Number 
  \ `https://v2.vuejs.org/v2/api/?redirect=true#props`  
  \
- 3. Deleted watch option from script, since we are reciving the "number" prop that automatically returns the input value from the parent component. 
-
+3. Deleted watch option from script, since we are reciving the "number" prop that automatically returns the input value from the parent component. 
+4. In the listOfNumbers method, I changed i = 0 to ...... i = 1, since the numbers should start at 1, and not 0. 
+5. I also changed "i < this.limit" to ...... "i < (this.$props.number + 1)" so that we get a list of 1-100 rather than 0-99. 
 
 ## Why (matched with To do Index): 
 
@@ -35,6 +36,8 @@
  1. "n()" is not a maintainable or descriptive name for any function / method. I changed it so its more descriptive and maintainable. 
  2. self explanintory. 
  3. self explanintory. 
+ 4. self explanintory. 
+ 5. self explanintory. 
 
 
 
