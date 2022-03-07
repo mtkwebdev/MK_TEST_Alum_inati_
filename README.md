@@ -35,14 +35,9 @@
 
 7. "listOfRandomisedNumbers()" did not have an efficient Math.Random function, as it had a bias of only 0.5. I implemented a randomise "for loop" Algorithm known as the "Fisher–Yates shuffle".
 
+8. Deleted $data.numbers, since number is being provided as a reactive state prop. No need for duplication of reactive state in child from parent. 
+
 \ * `Reference: Fisher–Yates shuffle www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/`
-
-8. On line 3 where v-for="number in listOfRandomisedNumbers()" appears, I changed it to v-for="number in this.numbers". Because I wanted to loop through this.$data, rather than an array returned by a function, as a function would need time to execute and is not instant. 
-
-9. I also called listOfRandomisedNumbers() in a created lifecycle hook, so that this.$data.numbers would be a populated array upon the components' creation, rather than an empty array.
-
-
-
 
 
 <!-- 8. Renamed "hov" method to "highlight" so its more descriptive to what the function does.  -->

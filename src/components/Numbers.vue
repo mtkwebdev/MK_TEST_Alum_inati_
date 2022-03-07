@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="number" :id="'number-'+number" v-for="number in this.numbers" :key="number" @mouseover="highlight(number)" @mouseout="reset">
+    <div class="number" :id="'number-'+number" v-for="number in listOfRandomisedNumbers()" :key="number" @mouseover="highlight(number)" @mouseout="reset">
       {{number}}
     </div>
   </div>
@@ -12,11 +12,8 @@ export default {
   data()
   {
     return {
-      numbers: []
+      none: null
     }
-  },
-  created(){
-    this.listOfRandomisedNumbers()
   },
   methods: {
     listOfRandomisedNumbers()
