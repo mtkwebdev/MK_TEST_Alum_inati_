@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="number" :id="'number-'+number" v-for="number in listOfRandomisedNumbers()" :key="number" @mouseover="highlight(number)" @mouseout="reset">
+    <div class="number" :id="'number-'+number" v-for="number in listOfRandomisedNumbers()" :key="number" @mouseover.stop="highlight(number)" @mouseout.stop="reset" ref="numberRef">
       {{number}}
     </div>
   </div>
@@ -32,11 +32,10 @@ export default {
     },
     highlight(number)
     {
-      // console.log(this.listOfRandomisedNumbers())
-      const nums = document.querySelectorAll('.number');
-      for(let i = 0; i < nums.length; i++)
-      {
-        const num = nums[i].textContent.trim();
+      const nums = this.$refs.numberRef
+      for(let i = 0; i < nums.length; i++){
+        // console.log(nums[i].innerText.trim())
+        const num = nums[i].innerText.trim();
         if(number % num === 0)
         {
           nums[i].classList.add('active')

@@ -5,7 +5,7 @@
 * `More information found at https://v2.vuejs.org/v2/api/?redirect=true#Options-Data`
 - I did not upgrade Vue 2 to Vue 3, because this was not requested in the spec, and in a working envrionment, this may disrupt other users and or production code. 
 
-## Optimisations: 
+## Optimisations and comments: 
 #### App.vue
 1. Set Min = 0 and Max = 100 ranges for the number input tag. The Spec mentions that only 1 to 100 should appear on the screen as a user input. 
 
@@ -35,15 +35,15 @@
 
 7. "listOfRandomisedNumbers()" did not have an efficient Math.Random function, as it had a bias of only 0.5. I implemented a randomise "for loop" Algorithm known as the "Fisher–Yates shuffle".
 
-8. Deleted $data.numbers, since number is being provided as a reactive state prop. No need for duplication of reactive state in child from parent. 
+8. see git MASTER commit "set this.$data.numbers..." \ Deleted $data.numbers, since number is being provided as a reactive state via $props. No need for duplication of reactive state in child from parent. 
+
+9. Renamed "hov" method to "highlight" so its more descriptive to what the function does. 
+
+10. line 35, changed nums variable to use Vue Virtual dom $refs, rather than the this.window DOM method, that used document queries and selectors. 
+
+11. line 38, got values for each number using "innerText".
 
 \ * `Reference: Fisher–Yates shuffle www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/`
-
-
-<!-- 8. Renamed "hov" method to "highlight" so its more descriptive to what the function does.  -->
-
-
-
 
 
 ### Spec
