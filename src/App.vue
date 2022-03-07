@@ -19,7 +19,11 @@ export default {
   },
   computed: {
     getLimit(){
-      return this.limit
+      if (this.limit < 1 ){
+        return this.limit = 1
+      } else {
+        return this.limit
+      }
     }
   }
 }
