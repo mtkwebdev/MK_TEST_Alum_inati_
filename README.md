@@ -5,39 +5,30 @@
 * `More information found at https://v2.vuejs.org/v2/api/?redirect=true#Options-Data`
 - I did not upgrade Vue 2 to Vue 3, because this was not requested in the spec, and in a working envrionment, this may disrupt other users and or production code. 
 
-## To Do following optimisations: 
+## Optimisations: 
 #### App.vue
-1. Set Min = 0 and Max = 100 ranges for the number input tag. 
+1. Set Min = 0 and Max = 100 ranges for the number input tag. The Spec mentions that only 1 to 100 should appear on the screen as a user input. 
 2. Set v-model to v-model.number in the input tag, so that the result is returned as typeof(Number) === true.
-2. Set up a computed method to listen, update, and return the "limit" change from 100 when modified by user.
-3. Passed "number" prop to the "Numbers" component, passing through the value returned from the getLimit computed method I created. 
+3. Set up a computed method to listen, update, and return the "limit" change from 100 when modified by user.
+4. Passed "number" prop to the "Numbers" component, passing through the value returned from the getLimit computed method I created. 
+
+*3. & 4.* Set up a computed method to pass reactive data from parent to child, this is less expensive on Vue engine than using a watch option to listen to parent!
+* `Please see https://v2.vuejs.org/v2/guide/computed.html?redirect=true for more information.`
 
 #### Numbers.vue
-1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in listOfNumbers()"".
+1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in listOfNumbers()"". "n()" is not a maintainable or descriptive name for any function / method. I changed it so its more descriptive and maintainable. 
 2. Created a props option, and validated the prop type, expecting the prop to return type Number 
  \ `https://v2.vuejs.org/v2/api/?redirect=true#props`  
  \
 3. Deleted watch option from script, since we are reciving the "number" prop that automatically returns the input value from the parent component. 
 4. In the listOfNumbers method, I changed i = 0 to ...... i = 1, since the numbers should start at 1, and not 0. 
 5. I also changed "i < this.limit" to ...... "i < (this.$props.number + 1)" so that we get a list of 1-100 rather than 0-99. 
+6. Renamed "n()" to "listOfRandomisedNumbers()" since function needed to return random numbers. 
+7. "listOfRandomisedNumbers()" did not have an efficient Math.Random function, as it had a bias of only 0.5. I implemented a randomise for loop Algorithm known as the "Fisher–Yates shuffle".
+8. Renamed "hov" method to "highlight" so its more descriptive to what the function does. 
 
-## Why (matched with To do Index): 
+* `Reference: Fisher–Yates shuffle www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/`
 
-#### App.vue
-
-1. Spec mentions that only 1 to 100 should appear on the screen as a user input. 
-
-2. Set v-model to v-model.number in the input tag, so that the result is returned as typeof(Number) === true.
-
-*3. & 4.* Set up a computed method to pass reactive data from parent to child, this is less expensive on Vue engine than using a watch option to listen to parent!
-* `Please see https://v2.vuejs.org/v2/guide/computed.html?redirect=true for more information.`
-
-#### Numbers.vue
- 1. "n()" is not a maintainable or descriptive name for any function / method. I changed it so its more descriptive and maintainable. 
- 2. self explanintory. 
- 3. self explanintory. 
- 4. self explanintory. 
- 5. self explanintory. 
 
 
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="number" :id="'number-'+number" v-for="number in listOfNumbers()" :key="number" @mouseover="hov(number)" @mouseout="reset">
+    <div class="number" :id="'number-'+number" v-for="number in listOfRandomisedNumbers()" :key="number" @mouseover="highlight(number)" @mouseout="reset">
       {{number}}
     </div>
   </div>
@@ -16,18 +16,21 @@ export default {
     }
   },
   methods: {
-    listOfNumbers()
+    listOfRandomisedNumbers()
     {
       let numbers = [];
-      for(var i = 1; i < (this.$props.number + 1); i++)
-      {
-        numbers = [...numbers, i];
-        console.log(numbers)
-      }
-      // console.log(this.$props.number)
-      return numbers.sort(() => Math.random() - 0.5);
+      for(var i = 1; i < (this.$props.number + 1); i++){
+          numbers = [...numbers, i];
+        }
+      //
+      for (let i = numbers.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+        }
+      console.log(numbers)
+      return numbers
     },
-    hov(number)
+    highlight(number)
     {
       const nums = document.querySelectorAll('.number');
 
