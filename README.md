@@ -3,7 +3,9 @@
 #### Note:
 - Having looked at the package.json and finding that Vue is set to "vue": "^2.5.2", means that we are using Vue 2, and therefore we will continue using the Vue options data API to modify and build components. 
 * `More information found at https://v2.vuejs.org/v2/api/?redirect=true#Options-Data`
-- I did not upgrade Vue 2 to Vue 3, because this was not requested in the spec, and in a working envrionment, this may disrupt other users and or production code. 
+- I did not upgrade Vue 2 to Vue 3, because this was not requested in the spec, and in a working environment, this may disrupt other users and or production code. 
+
+- Apologies for the second git commit on MASTER containing all the project files, additional to the changes I made. I was using VS code to push changes to Github, and for some reason, the initial commit did not push all the files though. All subsequent pushes were made through Atlassian sourcetree. 
 
 ## Optimisations and comments: 
 #### App.vue
@@ -21,11 +23,11 @@
 #### Numbers.vue
 1. Renamed "n()" in the methods option, and also changed "v-for="number in n()"" to  "v-for="number in "listOfRandomisedNumbers()". "n()" is not a maintainable or descriptive name for any function / method. I changed it so its more descriptive and maintainable. 
 
-2. Created a props option, and validated the prop type, expecting the prop to return type Number 
- \ `https://v2.vuejs.org/v2/api/?redirect=true#props`  
- \
+2. Created a props option, and validated the prop type, expecting the prop to return type Number.
+ `https://v2.vuejs.org/v2/api/?redirect=true#props`  
+ 
 
-3. Deleted watch option from script, since we are reciving the "number" prop that automatically returns the input value from the parent component. 
+3. Deleted watch option from script, since we are receiving the "number" prop that automatically returns the input value from the parent component. 
 
 4. In the "listOfRandomisedNumbers()" method, I changed i = 0 to ...... i = 1, since the numbers should start at 1, and not 0. 
 
@@ -45,7 +47,6 @@
 
 \ * `Reference: Fisher–Yates shuffle www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/`
 
-
 ### Spec
 Using Vue, display all numbers from 1 to 100 in a random order on the screen. This number should be configurable via a provided input box.
 If the user places their pointer over a given number, highlight that numbers' divisors.
@@ -57,6 +58,8 @@ The provided code is functional, but it's got some issues that need to be resolv
 Improve the code how you see fit - please leave comments to justify your decisions.
 
 ### GitHub Pull Requests
-This is an interview task sent to prospective candidates to work at Aluminati. As such, all pull requests will be rejected. This code is, by its very nature, purposely designed with issues that candiates are asked to review!
+This is an interview task sent to prospective candidates to work at Aluminati. As such, all pull requests will be rejected. This code is, by its very nature, purposely designed with issues that candidates are asked to review!
 
 If you have been invited to perform this test your submission should be through your point of contact with us, e.g. your recruitment agency.
+
+
